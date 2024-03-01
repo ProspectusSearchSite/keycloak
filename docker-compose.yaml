@@ -14,7 +14,7 @@ services:
       - dbdata:/var/lib/postgresql/data
     container_name: keycloak_db
     networks:
-      - keycloak-network
+      - keycloak_service
     restart: always
 
   keycloak:
@@ -44,8 +44,7 @@ services:
       - "postgres"
     container_name: keycloak
     networks:
-      - keycloak-network
-      - demo
+      - keycloak_service
     restart: always
 
 volumes:
@@ -58,7 +57,6 @@ volumes:
     external: false
 
 networks:
-  keycloak-network:
-    driver: bridge
-  demo:
+  keycloak_service:
+    name: keycloak-network
     external: true
